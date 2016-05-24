@@ -60,6 +60,11 @@ public class CelestialObjectAdapter extends RecyclerView.Adapter<CelestialObject
         return objects.size();
     }
 
+    @Nullable
+    public List<CelestialObject> getObjects() {
+        return objects;
+    }
+
     public Listener getListener() {
         return listener;
     }

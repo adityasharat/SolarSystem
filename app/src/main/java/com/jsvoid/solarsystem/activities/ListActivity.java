@@ -1,5 +1,6 @@
 package com.jsvoid.solarsystem.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -31,6 +32,14 @@ public class ListActivity extends AppCompatActivity {
     private Retrofit retrofit;
     @Nullable
     private CelestialObjectAdapter mCelestialObjectAdapter;
+    private CelestialObjectAdapter.Listener listener = new CelestialObjectAdapter.Listener() {
+        @Override
+        public void onSelect(CelestialObject object) {
+            Intent intent = new Intent(ListActivity.this, DetailsActivity.class);
+            intent.putExtra(DetailsActivity.OBJECT, object);
+            startActivity(intent);
+        }
+    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,6 +57,7 @@ public class ListActivity extends AppCompatActivity {
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view_celestial_objects);
         if (recyclerView != null) {
             mCelestialObjectAdapter = new CelestialObjectAdapter(retrofit.baseUrl().toString(), null);
+            mCelestialObjectAdapter.setListener(listener);
             recyclerView.setAdapter(mCelestialObjectAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
         }
