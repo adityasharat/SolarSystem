@@ -37,6 +37,8 @@ public class ListActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_list);
 
+        setup();
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         if (toolbar != null) {
             toolbar.setTitle(R.string.app_name);
@@ -45,12 +47,11 @@ public class ListActivity extends AppCompatActivity {
 
         RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recycler_view_celestial_objects);
         if (recyclerView != null) {
-            mCelestialObjectAdapter = new CelestialObjectAdapter(null);
+            mCelestialObjectAdapter = new CelestialObjectAdapter(retrofit.baseUrl().toString(), null);
             recyclerView.setAdapter(mCelestialObjectAdapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
         }
 
-        setup();
         fetch();
     }
 

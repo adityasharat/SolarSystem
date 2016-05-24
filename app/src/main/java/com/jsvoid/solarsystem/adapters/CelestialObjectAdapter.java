@@ -5,10 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.jsvoid.solarsystem.R;
 import com.jsvoid.solarsystem.models.CelestialObject;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -19,6 +21,7 @@ import java.util.List;
  */
 public class CelestialObjectAdapter extends RecyclerView.Adapter<CelestialObjectAdapter.CelestialObjectViewHolder> {
 
+    private final String baseUrl;
     @Nullable
     LayoutInflater inflater;
     @Nullable
@@ -26,8 +29,9 @@ public class CelestialObjectAdapter extends RecyclerView.Adapter<CelestialObject
     @Nullable
     private List<CelestialObject> objects;
 
-    public CelestialObjectAdapter(@Nullable List<CelestialObject> objects) {
+    public CelestialObjectAdapter(String baseUrl, @Nullable List<CelestialObject> objects) {
         this.objects = objects;
+        this.baseUrl = baseUrl;
     }
 
     @Override
@@ -76,6 +80,7 @@ public class CelestialObjectAdapter extends RecyclerView.Adapter<CelestialObject
 
         private int itemPosition;
         private TextView mName;
+        private ImageView mImage;
 
         public CelestialObjectViewHolder(View itemView) {
             super(itemView);
@@ -84,6 +89,7 @@ public class CelestialObjectAdapter extends RecyclerView.Adapter<CelestialObject
 
         private void setup() {
             mName = (TextView) itemView.findViewById(R.id.object_name);
+            mImage = (ImageView) itemView.findViewById(R.id.object_image);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -96,6 +102,11 @@ public class CelestialObjectAdapter extends RecyclerView.Adapter<CelestialObject
 
         public void update(CelestialObject object, int position) {
             mName.setText(object.name);
+            Picasso.with(mImage.getContext())
+                    .load(baseUrl + object.thumbnailUrl)
+                    .placeholder(R.drawable.image_preview)
+                    .resize(mImage.getLayoutParams().width, mImage.getLayoutParams().height)
+                    .into(mImage);
             setItemPosition(position);
         }
 

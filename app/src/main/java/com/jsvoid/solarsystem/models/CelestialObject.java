@@ -1,5 +1,7 @@
 package com.jsvoid.solarsystem.models;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * CelestialObject
  *
@@ -8,12 +10,18 @@ package com.jsvoid.solarsystem.models;
 public class CelestialObject {
 
     public final String name;
+
     public final String details;
+
     public final String imageUrl;
 
-    public CelestialObject(String name, String details, String imageUrl) {
+    @SerializedName("thumbnailUrl")
+    public final String thumbnailUrl;
+
+    public CelestialObject(String name, String details, String imageUrl, String thumbnailUrl) {
         this.name = name;
         this.details = details;
         this.imageUrl = imageUrl;
+        this.thumbnailUrl = thumbnailUrl;
     }
 }

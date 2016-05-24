@@ -7,8 +7,8 @@
                                     android:layout_marginLeft="4dp"
                                     android:layout_marginRight="4dp"
                                     android:layout_marginTop="8dp"
-                                    android:foreground="?android:attr/selectableItemBackground"
                                     android:clickable="true"
+                                    android:foreground="?android:attr/selectableItemBackground"
                                     android:orientation="vertical"
                                     card_view:cardCornerRadius="4dp"
                                     card_view:cardElevation="2dp"
@@ -23,9 +23,9 @@
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_alignParentLeft="true"
+            android:layout_marginRight="8dp"
             android:contentDescription="@string/image_preview"
             android:scaleType="fitCenter"
-            android:src="@drawable/image_preview"
             tools:ignore="RtlHardcoded"/>
 
         <TextView
@@ -33,6 +33,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/object_image"
+            android:textSize="16sp"
             tools:ignore="RtlHardcoded"/>
 
     </RelativeLayout>
