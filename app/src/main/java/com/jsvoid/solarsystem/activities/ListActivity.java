@@ -1,5 +1,6 @@
 package com.jsvoid.solarsystem.activities;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.Toast;
 
 import com.jsvoid.solarsystem.R;
@@ -34,10 +36,15 @@ public class ListActivity extends AppCompatActivity {
     private CelestialObjectAdapter mCelestialObjectAdapter;
     private CelestialObjectAdapter.Listener listener = new CelestialObjectAdapter.Listener() {
         @Override
-        public void onSelect(CelestialObject object) {
+        public void onSelect(CelestialObject object, View image) {
             Intent intent = new Intent(ListActivity.this, DetailsActivity.class);
             intent.putExtra(DetailsActivity.OBJECT, object);
-            startActivity(intent);
+            if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+                ActivityOptions options = ActivityOptions.makeSceneTransitionAnimation(ListActivity.this, image, getResources().getString(R.string.object_image));
+                startActivity(intent, options.toBundle());
+            } else {
+                startActivity(intent);
+            }
         }
     };
 

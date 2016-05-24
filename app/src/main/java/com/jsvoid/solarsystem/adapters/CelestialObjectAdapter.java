@@ -79,7 +79,7 @@ public class CelestialObjectAdapter extends RecyclerView.Adapter<CelestialObject
     }
 
     public interface Listener {
-        void onSelect(CelestialObject object);
+        void onSelect(CelestialObject object, View image);
     }
 
     public class CelestialObjectViewHolder extends RecyclerView.ViewHolder {
@@ -102,7 +102,7 @@ public class CelestialObjectAdapter extends RecyclerView.Adapter<CelestialObject
                 @Override
                 public void onClick(View v) {
                     if (listener != null && objects != null) {
-                        listener.onSelect(objects.get(getItemPosition()));
+                        listener.onSelect(objects.get(getItemPosition()), mImage);
                     }
                 }
             });
