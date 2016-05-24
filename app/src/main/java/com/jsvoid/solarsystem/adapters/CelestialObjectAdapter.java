@@ -2,6 +2,7 @@ package com.jsvoid.solarsystem.adapters;
 
 import android.support.annotation.Nullable;
 import android.support.v7.widget.RecyclerView;
+import android.text.method.LinkMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -81,6 +82,7 @@ public class CelestialObjectAdapter extends RecyclerView.Adapter<CelestialObject
         private int itemPosition;
         private TextView mName;
         private ImageView mImage;
+        private TextView mDetails;
 
         public CelestialObjectViewHolder(View itemView) {
             super(itemView);
@@ -90,6 +92,7 @@ public class CelestialObjectAdapter extends RecyclerView.Adapter<CelestialObject
         private void setup() {
             mName = (TextView) itemView.findViewById(R.id.object_name);
             mImage = (ImageView) itemView.findViewById(R.id.object_image);
+            mDetails = (TextView) itemView.findViewById(R.id.object_summary);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -102,6 +105,7 @@ public class CelestialObjectAdapter extends RecyclerView.Adapter<CelestialObject
 
         public void update(CelestialObject object, int position) {
             mName.setText(object.name);
+            mDetails.setText(object.getDetailsStriped());
             Picasso.with(mImage.getContext())
                     .load(baseUrl + object.thumbnailUrl)
                     .placeholder(R.drawable.image_preview)
