@@ -26,10 +26,6 @@ public class DetailsActivity extends AppCompatActivity {
         Retrofit retrofit = ((SolarSystemApplication) getApplication()).getRetrofit();
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        if (toolbar != null) {
-            toolbar.setTitle(R.string.app_name);
-            setSupportActionBar(toolbar);
-        }
 
         ImageView mImage = (ImageView) findViewById(R.id.object_image);
         TextView mDetail = (TextView) findViewById(R.id.details);
@@ -41,6 +37,10 @@ public class DetailsActivity extends AppCompatActivity {
         }
 
         if (mObject != null) {
+            if (toolbar != null) {
+                toolbar.setTitle(mObject.name);
+                setSupportActionBar(toolbar);
+            }
             if (mDetail != null) {
                 mDetail.setText(mObject.getDetailsHtml());
             }
