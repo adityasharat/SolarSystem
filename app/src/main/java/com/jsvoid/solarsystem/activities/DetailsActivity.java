@@ -47,6 +47,7 @@ public class DetailsActivity extends AppCompatActivity {
             if (mImage != null) {
                 Picasso.with(this)
                         .load(retrofit.baseUrl().toString() + mObject.imageUrl)
+                        .placeholder(R.drawable.image_preview)
                         .into(mImage);
             }
         }

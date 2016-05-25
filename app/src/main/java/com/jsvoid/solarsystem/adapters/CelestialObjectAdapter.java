@@ -114,7 +114,6 @@ public class CelestialObjectAdapter extends RecyclerView.Adapter<CelestialObject
             Picasso.with(mImage.getContext())
                     .load(baseUrl + object.thumbnailUrl)
                     .placeholder(R.drawable.image_preview)
-                    .resize(mImage.getLayoutParams().width, mImage.getLayoutParams().height)
                     .into(mImage);
             setItemPosition(position);
         }
